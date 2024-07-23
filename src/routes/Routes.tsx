@@ -9,13 +9,19 @@ const Stack = createNativeStackNavigator();
 export const Routes = () => {
   return (
     <NavigationContainer>
-      <Stack.Navigator initialRouteName="Home">
+      <Stack.Navigator initialRouteName="Splash">
         <Stack.Screen
           name="Splash"
           component={SplashScreen}
           options={{headerShown: false}}
         />
-        <Stack.Screen name="Home" component={HomeScreen} />
+        <Stack.Screen
+          name="Home"
+          component={HomeScreen}
+          options={{
+            headerBackVisible: false,
+          }}
+        />
         <Stack.Screen name="Favorites" component={FavoritesScreen} />
       </Stack.Navigator>
     </NavigationContainer>

@@ -1,5 +1,5 @@
 import {NavigationProp} from '@react-navigation/native';
 
-export type HomeScreenProps = {
+export type FavoritesScreenProps = {
   navigation: NavigationProp<any>;
 };

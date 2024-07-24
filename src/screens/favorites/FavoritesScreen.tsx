@@ -16,7 +16,7 @@ import {SafeAreaView} from 'react-native-safe-area-context';
 import {styles} from './FavoritesScreen.styles';
 import {UserProps} from '../../services/APIService.types';
 import {useDispatch, useSelector} from 'react-redux';
-import {RootState} from '../../redux/store';
+import {RootState} from '../../redux/store.types';
 import {removeFavorite} from '../../redux/reducers/FavoritesReducer/FavoritesReducer';
 import {NotchedButton} from '../../components/NotchedButton/NotchedButton';
 

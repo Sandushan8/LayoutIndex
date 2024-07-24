@@ -17,7 +17,7 @@ import {color} from '@mui/system';
 import {SafeAreaView} from 'react-native-safe-area-context';
 import {styles} from './HomeScreen.styles';
 import {useDispatch, useSelector} from 'react-redux';
-import {RootState} from '../../redux/store';
+import {RootState} from '../../redux/store.types';
 import {UserProps} from '../../services/APIService.types';
 import {addFavorite} from '../../redux/reducers/FavoritesReducer/FavoritesReducer';
 import {Modal} from '../../components/Modal/Modal';

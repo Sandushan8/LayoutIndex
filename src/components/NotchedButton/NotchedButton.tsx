@@ -6,9 +6,7 @@ export const NotchedButton = ({onPress, style, text}: NotchedButtonProps) => {
   return (
     <TouchableOpacity onPress={() => onPress()} style={style}>
       <View style={styles.cutOffBottomRight} />
-      <Text style={{color: 'white', fontWeight: 'bold', textAlign: 'center'}}>
-        {text}
-      </Text>
+      <Text style={styles.text}>{text}</Text>
     </TouchableOpacity>
   );
 };

@@ -38,24 +38,15 @@ export const HomeScreen = ({navigation}: HomeScreenProps) => {
   useEffect(() => {
     navigation.setOptions({
       headerTitle: 'User Information',
-      headerStyle: {
-        backgroundColor: Colors.mainColor,
-      },
-      headerTitleStyle: {
-        color: 'white',
-      },
+      headerStyle: styles.headerStyle,
+      headerTitleStyle: styles.headerTitleStyle,
       headerRight: () => (
         <TouchableOpacity
           onPress={() => navigation.navigate('Favorites')}
-          style={{
-            marginRight: 5,
-            borderWidth: 1,
-            borderColor: Colors.starContainerColor,
-            padding: 8,
-          }}>
+          style={styles.favoriteButton}>
           <Image
             source={require('../../assets/images/star/star.png')}
-            style={{width: 12, height: 12, tintColor: Colors.starColor}}
+            style={styles.favoriteIcon}
           />
         </TouchableOpacity>
       ),
@@ -118,83 +109,25 @@ export const HomeScreen = ({navigation}: HomeScreenProps) => {
 
   const renderItem = (item: UserProps) => {
     return (
-      <View
-        style={{
-          backgroundColor: 'white',
-          shadowColor: 'black',
-          shadowOffset: {
-            width: 0,
-            height: 3,
-          },
-          marginBottom: 20,
-          marginHorizontal: 1,
-          shadowOpacity: 0.3,
-          shadowRadius: 6,
-          elevation: 3,
-          borderRadius: 6,
-          height: 90,
-        }}>
-        <View
-          style={{
-            flexDirection: 'row',
-            justifyContent: 'space-between',
-            width: '100%',
-          }}>
+      <View style={styles.itemContainer}>
+        <View style={styles.item}>
           <TouchableOpacity
             onPress={() => setUserData(item)}
-            style={{
-              flexDirection: 'row',
-              gap: 16,
-              paddingLeft: 20,
-              paddingTop: 20,
-              width: '75%',
-            }}>
-            <View style={{flexDirection: 'column', gap: 10}}>
-              <Text
-                style={{
-                  fontWeight: 'bold',
-                  color: 'black',
-                }}>
-                ID
-              </Text>
-              <Text
-                style={{
-                  fontWeight: 'bold',
-                  color: 'black',
-                }}>
-                Name
-              </Text>
+            style={styles.textContainer}>
+            <View style={styles.innerTextContainer}>
+              <Text style={styles.boldText}>ID</Text>
+              <Text style={styles.boldText}>Name</Text>
             </View>
-            <View style={{flexDirection: 'column', gap: 10}}>
-              <Text
-                style={{
-                  color: 'black',
-                }}>
-                {item.id}
-              </Text>
-              <Text
-                style={{
-                  color: 'black',
-                }}>
-                {item.first_name}
-              </Text>
+            <View style={styles.innerTextContainer}>
+              <Text style={styles.blackText}>{item.id}</Text>
+              <Text style={styles.blackText}>{item.first_name}</Text>
             </View>
           </TouchableOpacity>
 
-          <View
-            style={{
-              width: '25%',
-            }}>
+          <View style={styles.addButtonContainer}>
             <TouchableOpacity
               onPress={() => addFavoriteUser(item)}
-              style={{
-                height: 90,
-                width: '100%',
-                borderLeftColor: Colors.backgroundGray,
-                borderLeftWidth: 2,
-                justifyContent: 'center',
-                alignItems: 'center',
-              }}>
+              style={styles.addButton}>
               <Text style={{color: Colors.addGreenColor, fontWeight: 'bold'}}>
                 Add
               </Text>
@@ -207,59 +140,24 @@ export const HomeScreen = ({navigation}: HomeScreenProps) => {
 
   return (
     <SafeAreaView>
-      <View
-        style={{
-          height: 80,
-          padding: 20,
-          flexDirection: 'row',
-          justifyContent: 'space-between',
-          elevation: 5,
-          backgroundColor: 'white',
-          width: '100%',
-        }}>
+      <View style={styles.searchContainer}>
         <TextInput
           placeholder="User ID"
           placeholderTextColor={Colors.placeHolderColor}
           keyboardType="numeric"
-          style={{
-            backgroundColor: Colors.backgroundGray,
-            borderWidth: 1,
-            borderColor: Colors.borderColor,
-            paddingHorizontal: 10,
-            width: '60%',
-            borderRadius: 4,
-            color: 'black',
-          }}
+          style={styles.searchTextBox}
           value={searchText}
           onChangeText={e => setSearchText(e)}
         />
 
         <NotchedButton
           onPress={() => searchById(users, searchText)}
-          style={{
-            backgroundColor: Colors.mainColor,
-            paddingHorizontal: 30,
-            paddingVertical: 10,
-            width: '35%',
-          }}
+          style={styles.notchButton}
           text="Search"
         />
       </View>
-      <View
-        style={{
-          padding: 20,
-          paddingBottom: 20,
-          height: '91%',
-        }}>
-        <Text
-          style={{
-            fontSize: 16,
-            fontWeight: 'bold',
-            marginBottom: 20,
-            color: 'black',
-          }}>
-          AVAILABLE USERS
-        </Text>
+      <View style={styles.bodyContainer}>
+        <Text style={styles.headerText}>AVAILABLE USERS</Text>
         {filteredUsers.length > 0 ? (
           <FlatList
             data={filteredUsers}
@@ -267,13 +165,7 @@ export const HomeScreen = ({navigation}: HomeScreenProps) => {
             renderItem={({item}) => renderItem(item)}
           />
         ) : (
-          <Text
-            style={{
-              color: 'black',
-              fontSize: 16,
-              textAlign: 'center',
-              justifyContent: 'center',
-            }}>
+          <Text style={styles.noDataText}>
             {searchText.length > 0
               ? 'No users found by ID'
               : 'No users available'}

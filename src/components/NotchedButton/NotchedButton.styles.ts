@@ -10,4 +10,9 @@ export const styles = StyleSheet.create({
     borderBottomColor: 'white',
     borderLeftColor: 'transparent',
   },
+  text: {
+    color: 'white',
+    fontWeight: 'bold',
+    textAlign: 'center',
+  },
 });

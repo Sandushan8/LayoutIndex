@@ -9,31 +9,11 @@ import zIndex from '@mui/material/styles/zIndex';
 export const Modal = ({user, setUserData}: ModalProps) => {
   return (
     <ReactNativeModal animationType="fade" transparent={true} visible={!!user}>
-      <View
-        style={{
-          width: deviceWidth,
-          height: deviceHeight,
-          justifyContent: 'center',
-          padding: 20,
-          backgroundColor: 'rgba(0,0,0,0.5)',
-        }}>
-        <View
-          style={{
-            backgroundColor: 'white',
-            height: deviceHeight / 4,
-            width: '100%',
-            justifyContent: 'center',
-            alignItems: 'center',
-          }}>
+      <View style={styles.background}>
+        <View style={styles.container}>
           <View style={styles.cutOffTopLeft} />
           <View style={styles.cutOffBottomRight} />
-          <View
-            style={{
-              flexDirection: 'row',
-              width: '95%',
-              gap: 20,
-              padding: 5,
-            }}>
+          <View style={styles.mainView}>
             <View>
               <Image
                 source={
@@ -41,58 +21,31 @@ export const Modal = ({user, setUserData}: ModalProps) => {
                     ? {uri: user.avatar}
                     : require('../../assets/images/avatar/defaultAvatar.png')
                 }
-                style={{
-                  height: 80,
-                  width: 80,
-                  objectFit: 'cover',
-                  borderRadius: 40,
-                }}
+                style={styles.avatar}
               />
             </View>
-            <View style={{flexDirection: 'row', alignItems: 'center', gap: 10}}>
-              <View
-                style={{
-                  flexDirection: 'column',
-                  gap: 10,
-                }}>
-                <Text style={{color: 'black', fontWeight: '500'}}>
-                  First Name
-                </Text>
-                <Text style={{color: 'black', fontWeight: '500'}}>
-                  Last Name
-                </Text>
-                <Text style={{color: 'black', fontWeight: '500'}}>Email</Text>
+            <View style={styles.textContainer}>
+              <View style={styles.innerTextContainer}>
+                <Text style={styles.boldText}>First Name</Text>
+                <Text style={styles.boldText}>Last Name</Text>
+                <Text style={styles.boldText}>Email</Text>
               </View>
-              <View
-                style={{
-                  flexDirection: 'column',
-                  gap: 10,
-                }}>
-                <Text style={{color: 'black'}}>{user?.first_name}</Text>
-                <Text style={{color: 'black'}}>{user?.last_name}</Text>
+              <View style={styles.innerTextContainer}>
+                <Text style={styles.blackText}>{user?.first_name}</Text>
+                <Text style={styles.blackText}>{user?.last_name}</Text>
                 <Text
                   ellipsizeMode="tail"
                   numberOfLines={1}
-                  style={{
-                    color: 'black',
-                    maxWidth: 145,
-                  }}>
+                  style={styles.emailText}>
                   {user?.email}
                 </Text>
               </View>
             </View>
           </View>
-          <Text style={{color: 'white'}}>Modal</Text>
           <NotchedButton
             text="Close"
             onPress={() => setUserData(undefined)}
-            style={{
-              backgroundColor: Colors.mainColor,
-              paddingHorizontal: 30,
-              paddingVertical: 10,
-              width: '35%',
-              zIndex: 100,
-            }}
+            style={styles.notchedButton}
           />
         </View>
       </View>

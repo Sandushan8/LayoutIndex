@@ -31,19 +31,13 @@ export const FavoritesScreen = ({navigation}: FavoritesScreenProps) => {
   useEffect(() => {
     navigation.setOptions({
       headerTitle: 'Favourites',
-      headerStyle: {
-        backgroundColor: Colors.mainColor,
-      },
-      headerTitleStyle: {
-        color: 'white',
-      },
+      headerStyle: styles.headerStyle,
+      headerTitleStyle: styles.headerTitleStyle,
       headerLeft: () => (
         <TouchableOpacity onPress={() => navigation.navigate('Home')}>
           <Image
             source={require('../../assets/images/back/back.png')}
-            style={{
-              tintColor: 'white',
-            }}
+            style={styles.backIcon}
           />
         </TouchableOpacity>
       ),
@@ -76,80 +70,24 @@ export const FavoritesScreen = ({navigation}: FavoritesScreenProps) => {
 
   const renderItem = (item: UserProps) => {
     return (
-      <View
-        style={{
-          backgroundColor: 'white',
-          shadowColor: 'black',
-          shadowOffset: {
-            width: 0,
-            height: 3,
-          },
-          marginBottom: 20,
-          marginHorizontal: 1,
-          shadowOpacity: 0.3,
-          shadowRadius: 6,
-          elevation: 3,
-          borderRadius: 6,
-          height: 90,
-        }}>
-        <View
-          style={{
-            flexDirection: 'row',
-            justifyContent: 'space-between',
-          }}>
-          <View
-            style={{
-              flexDirection: 'row',
-              gap: 16,
-              paddingLeft: 20,
-              paddingTop: 20,
-            }}>
-            <View style={{flexDirection: 'column', gap: 10}}>
-              <Text
-                style={{
-                  fontWeight: 'bold',
-                  color: 'black',
-                }}>
-                ID
-              </Text>
-              <Text
-                style={{
-                  fontWeight: 'bold',
-                  color: 'black',
-                }}>
-                Name
-              </Text>
+      <View style={styles.itemContainer}>
+        <View style={styles.item}>
+          <View style={styles.textContainer}>
+            <View style={styles.innerTextContainer}>
+              <Text style={styles.boldText}>ID</Text>
+              <Text style={styles.boldText}>Name</Text>
             </View>
-            <View style={{flexDirection: 'column', gap: 10}}>
-              <Text
-                style={{
-                  color: 'black',
-                }}>
-                {item.id}
-              </Text>
-              <Text
-                style={{
-                  color: 'black',
-                }}>
-                {item.first_name}
-              </Text>
+            <View style={styles.innerTextContainer}>
+              <Text style={styles.blackText}>{item.id}</Text>
+              <Text style={styles.blackText}>{item.first_name}</Text>
             </View>
           </View>
 
-          <View>
+          <View style={styles.removeButtonContainer}>
             <TouchableOpacity
               onPress={() => removeFavoriteUser(item)}
-              style={{
-                height: 90,
-                width: 90,
-                borderLeftColor: Colors.backgroundGray,
-                borderLeftWidth: 2,
-                justifyContent: 'center',
-                alignItems: 'center',
-              }}>
-              <Text style={{color: Colors.removeRedColor, fontWeight: 'bold'}}>
-                Remove
-              </Text>
+              style={styles.removeButton}>
+              <Text style={styles.removeText}>Remove</Text>
             </TouchableOpacity>
           </View>
         </View>
@@ -158,57 +96,23 @@ export const FavoritesScreen = ({navigation}: FavoritesScreenProps) => {
   };
   return (
     <SafeAreaView>
-      <View
-        style={{
-          height: 80,
-          padding: 20,
-          flexDirection: 'row',
-          justifyContent: 'space-between',
-          elevation: 5,
-          backgroundColor: 'white',
-          width: '100%',
-        }}>
+      <View style={styles.searchContainer}>
         <TextInput
           placeholder="User ID"
           placeholderTextColor={Colors.placeHolderColor}
-          style={{
-            backgroundColor: Colors.backgroundGray,
-            borderWidth: 1,
-            borderColor: Colors.borderColor,
-            paddingHorizontal: 10,
-            width: '60%',
-            borderRadius: 4,
-            color: 'black',
-          }}
+          style={styles.searchText}
           value={searchText}
           onChangeText={e => setSearchText(e)}
         />
 
         <NotchedButton
           onPress={() => searchById(favorites, searchText)}
-          style={{
-            backgroundColor: Colors.mainColor,
-            paddingHorizontal: 30,
-            paddingVertical: 10,
-            width: '35%',
-          }}
+          style={styles.notchedButton}
           text="Search"
         />
       </View>
-      <View
-        style={{
-          padding: 20,
-          paddingBottom: 0,
-        }}>
-        <Text
-          style={{
-            fontSize: 16,
-            fontWeight: 'bold',
-            marginBottom: 20,
-            color: 'black',
-          }}>
-          FAVOURITE USERS
-        </Text>
+      <View style={styles.bodyContainer}>
+        <Text style={styles.headerText}>FAVOURITE USERS</Text>
         {filteredFavorites.length > 0 ? (
           <FlatList
             data={filteredFavorites}
@@ -216,13 +120,7 @@ export const FavoritesScreen = ({navigation}: FavoritesScreenProps) => {
             renderItem={({item}) => renderItem(item)}
           />
         ) : (
-          <Text
-            style={{
-              color: 'black',
-              fontSize: 16,
-              textAlign: 'center',
-              justifyContent: 'center',
-            }}>
+          <Text style={styles.noDataText}>
             {searchText.length > 0
               ? 'No user found by ID'
               : 'No favourite users'}

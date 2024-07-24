@@ -121,8 +121,18 @@ export const FavoritesScreen = ({navigation}: FavoritesScreenProps) => {
               </Text>
             </View>
             <View style={{flexDirection: 'column', gap: 10}}>
-              <Text>{item.id}</Text>
-              <Text>{item.first_name}</Text>
+              <Text
+                style={{
+                  color: 'black',
+                }}>
+                {item.id}
+              </Text>
+              <Text
+                style={{
+                  color: 'black',
+                }}>
+                {item.first_name}
+              </Text>
             </View>
           </View>
 
@@ -160,6 +170,7 @@ export const FavoritesScreen = ({navigation}: FavoritesScreenProps) => {
         }}>
         <TextInput
           placeholder="User ID"
+          placeholderTextColor={Colors.placeHolderColor}
           style={{
             backgroundColor: Colors.backgroundGray,
             borderWidth: 1,
@@ -167,6 +178,7 @@ export const FavoritesScreen = ({navigation}: FavoritesScreenProps) => {
             paddingHorizontal: 10,
             width: '60%',
             borderRadius: 4,
+            color: 'black',
           }}
           value={searchText}
           onChangeText={e => setSearchText(e)}

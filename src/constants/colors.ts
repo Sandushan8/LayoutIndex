@@ -6,4 +6,5 @@ export const Colors = {
   starContainerColor: '#9CC3D3',
   addGreenColor: '#428840',
   removeRedColor: '#CD4040',
+  placeHolderColor: '#B9BBC0',
 };

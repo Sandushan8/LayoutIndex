@@ -110,7 +110,7 @@ export const HomeScreen = ({navigation}: HomeScreenProps) => {
 
   const addFavoriteUser = (user: UserProps) => {
     if (favorites.find(item => item.id === user.id)) {
-      return Alert.alert('Error', 'User already in favorites');
+      return Alert.alert('Error', 'This user is already added');
     }
     dispatch(addFavorite(user));
     Alert.alert('Success', 'User added to favorites');
@@ -166,8 +166,18 @@ export const HomeScreen = ({navigation}: HomeScreenProps) => {
               </Text>
             </View>
             <View style={{flexDirection: 'column', gap: 10}}>
-              <Text>{item.id}</Text>
-              <Text>{item.first_name}</Text>
+              <Text
+                style={{
+                  color: 'black',
+                }}>
+                {item.id}
+              </Text>
+              <Text
+                style={{
+                  color: 'black',
+                }}>
+                {item.first_name}
+              </Text>
             </View>
           </TouchableOpacity>
 
@@ -209,6 +219,7 @@ export const HomeScreen = ({navigation}: HomeScreenProps) => {
         }}>
         <TextInput
           placeholder="User ID"
+          placeholderTextColor={Colors.placeHolderColor}
           keyboardType="numeric"
           style={{
             backgroundColor: Colors.backgroundGray,
@@ -217,6 +228,7 @@ export const HomeScreen = ({navigation}: HomeScreenProps) => {
             paddingHorizontal: 10,
             width: '60%',
             borderRadius: 4,
+            color: 'black',
           }}
           value={searchText}
           onChangeText={e => setSearchText(e)}

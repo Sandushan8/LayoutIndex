@@ -70,7 +70,15 @@ export const Modal = ({user, setUserData}: ModalProps) => {
                 }}>
                 <Text style={{color: 'black'}}>{user?.first_name}</Text>
                 <Text style={{color: 'black'}}>{user?.last_name}</Text>
-                <Text style={{color: 'black'}}>{user?.email}</Text>
+                <Text
+                  ellipsizeMode="tail"
+                  numberOfLines={1}
+                  style={{
+                    color: 'black',
+                    maxWidth: 145,
+                  }}>
+                  {user?.email}
+                </Text>
               </View>
             </View>
           </View>
